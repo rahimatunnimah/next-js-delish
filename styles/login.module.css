@@ -1,0 +1,38 @@
+.loginTitle h4 {
+    color: #EFC81A;
+}
+
+.loginTitle p {
+    color: #C4C4C4;
+}
+
+.loginForm input {
+    background-color: #F5F5F5;
+    height: 60px;
+}
+
+.loginButton button {
+    height: 60px;
+    color: #F5F5F5;
+}
+
+.forgotPassword p {
+    font-style: normal;
+    color: #999999;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: right;
+}
+
+.loginFooter p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 17px;
+    color: #999999;
+}
+.loginFooter a {
+    color: #efc81a;
+    text-decoration: none;
+}
+

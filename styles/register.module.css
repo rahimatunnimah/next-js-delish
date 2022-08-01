@@ -1,0 +1,42 @@
+.root{
+    background-color: #E5E5E5;;
+}
+
+.registerTitle h4 {
+    color: #EFC81A;
+}
+
+.registerTitle p {
+    color: #C4C4C4;
+}
+
+.registerForm input {
+    background-color: #FFFFFF;
+    height: 60px;
+}
+
+.registerButton button {
+    height: 60px;
+    color: #F5F5F5;
+}
+
+.forgotPassword p {
+    font-style: normal;
+    color: #999999;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: right;
+}
+
+.registerFooter p {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 17px;
+    color: #999999;
+}
+.registerFooter a {
+    color: #efc81a;
+    text-decoration: none;
+}
+

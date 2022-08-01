@@ -1,0 +1,46 @@
+.iconBack {
+  width: 48px;
+  height: 48px;
+  background-color: #f8f8fa !important;
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: center;
+  padding-top: 7px;
+}
+
+.titlePage {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 23px;
+  color: #f1cd31;
+  margin-top: 10px;
+}
+
+.editProfile {
+  color: #3f3a3a;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.03em;
+}
+
+.buttonPhoto button {
+  background: #e7e7e7;
+  border-radius: 15px;
+}
+
+.btnPhoto {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  color: #3f3a3a;
+}
+.buttonCancel button {
+  height: 40px;
+  border-radius: 15px;
+}
