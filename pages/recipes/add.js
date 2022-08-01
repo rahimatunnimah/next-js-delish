@@ -71,9 +71,9 @@ const addRecipe = () => {
         </div>
         <div className="row justify-content-center">
             <div className="col-md-4">
-                 <div className={homeStyle.footer}>            
-                        <Footer/>
-                    </div> 
+                <div className={homeStyle.footer}>            
+                    <Footer/>
+                </div> 
             </div>
         </div>
 
