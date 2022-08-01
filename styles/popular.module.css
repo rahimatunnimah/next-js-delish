@@ -1,0 +1,49 @@
+.iconBack {
+  width: 48px;
+  height: 48px;
+  background-color: #f8f8fa !important;
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: center;
+  padding-top: 7px;
+}
+
+.titlePage {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 23px;
+  color: #f1cd31;
+  margin-top: 10px;
+}
+
+.contentText p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #6e80b0;
+}
+
+.buttonBookmark button {
+  width: 40px;
+  height: 40px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #eec302;
+  text-align: center;
+}
+
+.buttonLike button {
+  width: 40px;
+  height: 40px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #eec302;
+  text-align: center;
+}
+
+.button {
+  border: 2px solid #efc81a;
+  color: #efc81a;
+  padding-right: 37px;
+}

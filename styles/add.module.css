@@ -1,0 +1,48 @@
+.titlePage p {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 31px;
+  color: #efc81a;
+}
+
+.addForm input {
+  background-color: #ffffff;
+  height: 60px;
+}
+
+.formIngredients input {
+  height: 200px;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.addButton button {
+  height: 50px;
+  width: 183px;
+  text-align: center;
+  color: #f5f5f5;
+}
+
+.btnPost {
+  margin-left: 90px !important;
+}
+
+.buttonVideo button {
+  background: #ffffff;
+  font-weight: lighter;
+  border-radius: 15px;
+}
+
+.btnVideo {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  color: #3f3a3a;
+}
+.buttonCancel button {
+  height: 40px;
+  border-radius: 15px;
+}
