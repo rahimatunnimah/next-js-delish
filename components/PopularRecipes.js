@@ -33,7 +33,20 @@ const PopularRecipes = () => {
                 </p>
             </div>
         </div>
-          <div className="row">
+        <div className="row">
+            <div className="col-3 text-center">
+                <div className={homeStyle.popularImage}> 
+                <Image src={imageRecipe} alt="..."/>
+                </div>
+            </div>
+            <div className="col-9">               
+                <h6 className="mt-3">Sandwich with Egg</h6>
+                <p className={homeStyle.rating}>
+                    <AiFillStar color="#FFB200"/> 4.6
+                </p>
+            </div>
+        </div>
+        <div className="row">
             <div className="col-3 text-center">
                 <div className={homeStyle.popularImage}> 
                 <Image src={imageRecipe} alt="..."/>

@@ -5,6 +5,8 @@
 
 .cardImage {
   position: relative;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .cardImage img {
@@ -29,8 +31,8 @@
 .popularImage img {
   border-radius: 12px;
   object-fit: cover;
-  height: 64px !important;
-  width: 64px !important;
+  height: 70px !important;
+  width: 70px !important;
 }
 
 .rating {
@@ -39,11 +41,21 @@
 
 .footer {
   position: sticky;
+  left: 0;
+  bottom: 0;
   width: 100%;
+  height: 65px;
   background-color: white;
   color: #6e80b0;
   text-align: center;
-  height: 55px;
-  padding-top: 10px;
+  margin-left: 0px;
   cursor: pointer;
+  margin-right: 0px;
+}
+
+.contentText p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #6e80b0;
 }

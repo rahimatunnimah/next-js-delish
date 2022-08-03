@@ -45,3 +45,7 @@ a {
   padding-bottom: 150px !important;
   padding-left: 20px !important;
 }
+
+.main {
+  overflow-x: hidden;
+}

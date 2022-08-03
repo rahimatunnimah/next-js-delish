@@ -6,10 +6,10 @@ import homeStyle from "../styles/Home.module.css";
 
 const NewRecipes = () => {
   const settings = {
-    dots: false,
+    dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 2.5,
+    slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
@@ -60,6 +60,14 @@ const NewRecipes = () => {
             </div>
           </div>
           <div className={homeStyle.cardImage}>
+            <Image src={imageRecipe} alt="img-recipe" />
+            <div className="card-img-overlay">
+              <h5 className={`card-title ${homeStyle.titleCardRecipe}`}>
+                Beef Steak
+              </h5>
+            </div>
+          </div>
+           <div className={homeStyle.cardImage}>
             <Image src={imageRecipe} alt="img-recipe" />
             <div className="card-img-overlay">
               <h5 className={`card-title ${homeStyle.titleCardRecipe}`}>

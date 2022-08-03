@@ -44,3 +44,45 @@
   height: 40px;
   border-radius: 15px;
 }
+
+.bgTop {
+  background-color: #eec302;
+  height: 50vh;
+}
+
+.name {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  color: #ffffff;
+}
+
+.bgBottom {
+  background-color: #ffffff;
+  height: 50vh;
+  margin-top: -50px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.imgUser {
+  width: 84px;
+  height: 84px;
+}
+
+.icon {
+  color: #eec302;
+}
+
+.titleContent {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.link {
+  cursor: pointer;
+}

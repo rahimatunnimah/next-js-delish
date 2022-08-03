@@ -9,7 +9,7 @@ import {FiBookmark} from "react-icons/fi";
 
 const popularList = () => {
     return (
-        <>
+      <>
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-md-4">
@@ -32,23 +32,23 @@ const popularList = () => {
                         </div>
                         </div>
                         <div className="col-5">
-							<div className={popularStyle.contentText}>
-								<h5 className="mt-2">Margherita</h5>
-								<p>In Veg Pizza</p>
-							</div>
-						</div>
+                          <div className={popularStyle.contentText}>
+                            <h5 className="mt-2">Margherita</h5>
+                            <p>In Veg Pizza</p>
+                          </div>
+                        </div>
                         <div className="col-2">
                             <div className={popularStyle.buttonBookmark}>
-								<button type="button" className={`btn btn-warning mt-2 ${popularStyle.button}`}>
-									<FiBookmark size={25} />
-								</button>
-							</div>
+                              <button type="button" className={`btn btn-warning mt-2 ${popularStyle.button}`}>
+                                <FiBookmark size={25} />
+                              </button>
+                            </div>
                         </div>
                         <div className="col-2">
                             <div className={popularStyle.buttonLike}>
                                 <button type="button" className={`btn btn-warning mt-2 ${popularStyle.button}`}>
-									<BiLike size={25} />
-								</button>
+                                  <BiLike size={25} />
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -59,23 +59,23 @@ const popularList = () => {
                         </div>
                         </div>
                         <div className="col-5">
-							<div className={popularStyle.contentText}>
-								<h5 className="mt-2">Margherita</h5>
-								<p>In Veg Pizza</p>
-							</div>
-						</div>
+                          <div className={popularStyle.contentText}>
+                            <h5 className="mt-2">Margherita</h5>
+                            <p>In Veg Pizza</p>
+                          </div>
+                        </div>
                         <div className="col-2">
                             <div className={popularStyle.buttonBookmark}>
-								<button type="button" className={`btn btn-warning mt-2 ${popularStyle.button}`}>
-									<FiBookmark size={25} />
-								</button>
-							</div>
+                              <button type="button" className={`btn btn-warning mt-2 ${popularStyle.button}`}>
+                                <FiBookmark size={25} />
+                              </button>
+                            </div>
                         </div>
                         <div className="col-2">
                             <div className={popularStyle.buttonLike}>
                                 <button type="button" className={`btn btn-warning mt-2 ${popularStyle.button}`}>
-									<BiLike size={25} />
-								</button>
+                                  <BiLike size={25} />
+                                </button>
                             </div>
                         </div>
                     </div>  
@@ -86,31 +86,30 @@ const popularList = () => {
                         </div>
                         </div>
                         <div className="col-5">
-							<div className={popularStyle.contentText}>
-								<h5 className="mt-2">Margherita</h5>
-								<p>In Veg Pizza</p>
-							</div>
-						</div>
+                          <div className={popularStyle.contentText}>
+                            <h5 className="mt-2">Margherita</h5>
+                            <p>In Veg Pizza</p>
+                          </div>
+                        </div>
                         <div className="col-2">
                             <div className={popularStyle.buttonBookmark}>
-								<button type="button" className={`btn btn-warning mt-2 ${popularStyle.button}`}>
-									<FiBookmark size={25} />
-								</button>
-							</div>
+                            <button type="button" className={`btn btn-warning mt-2 ${popularStyle.button}`}>
+                              <FiBookmark size={25} />
+                            </button>
+                          </div>
                         </div>
                         <div className="col-2">
                             <div className={popularStyle.buttonLike}>
                                 <button type="button" className={`btn btn-warning mt-2 ${popularStyle.button}`}>
-									<BiLike size={25} />
-								</button>
+                                  <BiLike size={25} />
+                                </button>
                             </div>
                         </div>
                     </div>         
                 </div>
             </div>
-
         </div>
-        </>
+      </>
     )
 
 }

@@ -10,10 +10,10 @@ const home = () => {
   
   return (
     <>
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-md-4"> 
-          <div style={{minHeight:"100vh"}}>
+    <div className="main">
+      <div className="row justify-content-center">
+        <div className="col-md-4"> 
+          <div style={{minHeight:"90vh"}}>
             <div className={homeStyle.searchInput}>
               <input
                 className="form-control form-control-lg mt-4"
@@ -21,25 +21,23 @@ const home = () => {
                 placeholder="Search Pasta, Bread, etc"
               />
               </div>
-            <div className="mt-5 mb-3">
+            <div className="row mt-4 mb-3">
               <h5>New Recipes</h5>
             </div>
-            <div>
+            <div className="row">
               <NewRecipes/>
             </div>
-            <div className="my-4">
+            <div className="row my-4">
               <h5>Popular Recipes</h5>
             </div>
-            <div>
+            <div className="row">
               <PopularRecipes/>
             </div> 
-          </div>
-          <div className={homeStyle.footer}>            
-            <Footer/>
-          </div>  
-          </div>
+          </div>   
         </div>
       </div>
+    </div>
+      <Footer/>
     </>
   );
 };
