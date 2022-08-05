@@ -49,3 +49,11 @@ a {
 .main {
   overflow-x: hidden;
 }
+
+/* detail pages */
+
+#detailPages .nav-link {
+  color: black !important;
+}
+
+/* detail pages end */
