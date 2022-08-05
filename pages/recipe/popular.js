@@ -6,6 +6,7 @@ import homeStyle from "../../styles/Home.module.css";
 import {IoIosArrowBack} from "react-icons/io";
 import {BiLike} from "react-icons/bi";
 import {FiBookmark} from "react-icons/fi";
+import Link from "next/link";
 
 const popularList = () => {
     return (
@@ -16,7 +17,9 @@ const popularList = () => {
                     <div className="row mt-4">
                         <div className="col-4">
                             <div className={popularStyle.iconBack}>
-                                <IoIosArrowBack size={32}/>
+                                <Link href="/" passHref>
+                                  <IoIosArrowBack size={32}/>
+                                </Link>
                             </div>
                         </div>
                         <div className="col-8">

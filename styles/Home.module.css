@@ -18,14 +18,22 @@
 
 .titleCardRecipe {
   padding-top: 100px;
-  color: #fbfbfb;
+  color: black;
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
-  width: 61px;
+  width: 100px;
   height: 36px;
   margin-left: 10px;
   z-index: 9;
+}
+
+.moreInfo p {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  color: #6d61f2;
+  cursor: pointer;
 }
 
 .popularImage img {
@@ -37,6 +45,14 @@
 
 .rating {
   font-size: 12px;
+}
+
+.rating span {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #6e80b0;
+  padding-left: 10px;
 }
 
 .footer {
