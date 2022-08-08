@@ -23,7 +23,6 @@ const profile = () => {
     getProfile();
   }, [userStorage?.username])
   
-  console.log("initoken", tokenStorage)
 
   const config = {
     headers: {
@@ -71,66 +70,66 @@ const profile = () => {
             </div>
             <div className='container'>
               <div className={`row justify-content-center ${profileStyle.bgBottom}`}>
-                  <div className='row mt-4'>
-                    <div className='col-2 text-center'>
-                      <div className={profileStyle.icon}>
-                      <FiUser size={30}/>
+                  <Link href="/user/edit" passHref>
+                    <div className='row mt-4 cursor'>
+                      <div className='col-2 text-center'>
+                        <div className={profileStyle.icon}>
+                          <FiUser size={30}/>
+                        </div>
+                      </div>
+                      <div className='col-8 mt-2'>
+                        <p className={profileStyle.titleContent}>Edit Profile</p>
+                      </div>
+                      <div className={`col-2 ${profileStyle.link}`}>
+                        <FiChevronRight/>
                       </div>
                     </div>
-                    <div className='col-8 mt-2'>
-                      <p className={profileStyle.titleContent}>Edit Profile</p>
-                    </div>
-                    <div className={`col-2 ${profileStyle.link}`}>
-                      <Link href="/user/edit" passHref>
-                        <FiChevronRight/>
-                      </Link>
-                    </div>
-                  </div>
-                  <div className='row mt-4'>
-                    <div className='col-2 text-center'>
-                      <div className={profileStyle.icon}>
-                      <FiAward size={30}/>
+                  </Link>
+                  <Link href="/user/my-recipe" passHref>
+                    <div className='row mt-4 cursor'>
+                      <div className='col-2 text-center'>
+                        <div className={profileStyle.icon}>
+                          <FiAward size={30}/>
+                        </div>
                       </div>
-                    </div>
-                    <div className='col-8 mt-2'>
-                      <p className={profileStyle.titleContent}>My Recipe</p>
-                    </div>
-                    <div className={`col-2 ${profileStyle.link}`}>
-                      <Link href="/user/my-recipe" passHref>
-                        <FiChevronRight/>
-                      </Link>
-                    </div>
-                  </div>    
-                  <div className='row mt-4'>
-                    <div className='col-2 text-center'>
-                      <div className={profileStyle.icon}>
-                      <FiBookmark size={30}/>
+                      <div className='col-8 mt-2'>
+                        <p className={profileStyle.titleContent}>My Recipe</p>
                       </div>
-                    </div>
-                    <div className='col-8 mt-2'>
-                      <p className={profileStyle.titleContent}>Saved Recipe</p>
-                    </div>
-                    <div className={`col-2 ${profileStyle.link}`}>
-                      <Link href="/user/saved-recipe" passHref>
-                        <FiChevronRight/>
-                      </Link>
-                    </div>
-                  </div>    
-                  <div className='row mt-4'>
-                    <div className='col-2 text-center'>
-                      <div className={profileStyle.icon}>
-                      <BiLike size={30}/>
+                      <div className={`col-2 ${profileStyle.link}`}>
+                          <FiChevronRight/>
                       </div>
-                    </div>
-                    <div className='col-8 mt-2'>
-                      <p className={profileStyle.titleContent}>Liked Recipe</p>
-                    </div>
-                    <div className={`col-2 ${profileStyle.link}`}>
-                      <Link href="/user/liked-recipe" passHref>
+                    </div>    
+                  </Link>
+                  <Link href="/user/saved-recipe" passHref>
+                    <div className='row mt-4 cursor'>
+                      <div className='col-2 text-center'>
+                        <div className={profileStyle.icon}>
+                          <FiBookmark size={30}/>
+                        </div>
+                      </div>
+                      <div className='col-8 mt-2'>
+                        <p className={profileStyle.titleContent}>Saved Recipe</p>
+                      </div>
+                      <div className={`col-2 ${profileStyle.link}`}>
+                          <FiChevronRight/>
+                      </div>
+                    </div>    
+                  </Link>
+                  <Link href="/user/liked-recipe" passHref>
+                    <div className='row mt-4 cursor'>
+                      <div className='col-2 text-center'>
+                        <div className={profileStyle.icon}>
+                          <BiLike size={30}/>
+                        </div>
+                      </div>
+                      <div className='col-8 mt-2'>
+                        <p className={profileStyle.titleContent}>Liked Recipe</p>
+                      </div>
+                      <div className={`col-2 ${profileStyle.link}`}>
                         <FiChevronRight/>
-                      </Link>
-                    </div>
-                  </div>          
+                      </div>
+                    </div>          
+                  </Link>
               </div>
             </div>
           </div>

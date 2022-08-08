@@ -12,7 +12,7 @@ const PopularRecipes = (props) => {
             return (
             <Link href={`/recipe/detail/${item.recipe_id}`}>
                 <div className="row cursor">
-                <div className="col-3 mb-3 text-center">
+                <div className="col-3 text-center">
                     <div key={index} className={homeStyle.popularImage}> 
                     <Image src={`http://localhost:8001/${item.recipe_image.substring(
                     7,

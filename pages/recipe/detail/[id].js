@@ -14,7 +14,7 @@ import axios from "axios";
 
 const detailRecipe = () => {
     const [detailRecipe, setDetailRecipe] = useState([]);
-    const [commentRecipe, setCommentRecipe] = useState([])
+    const [commentRecipe, setCommentRecipe] = useState([]);
 
     const router = useRouter();
     const { id } = router.query;
@@ -46,7 +46,6 @@ const detailRecipe = () => {
       }); 
     };
 
-    console.log("ini comment", commentRecipe)
 
   return (
     <>
