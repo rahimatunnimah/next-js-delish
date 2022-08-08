@@ -7,13 +7,13 @@ import {FiUser, FiBookmark, FiChevronRight, FiAward} from "react-icons/fi";
 import Link from "next/link";
 import Footer from "../../components/Footer";
 import axios from "axios"
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
+import Swal from 'sweetalert2';
 
 const profile = () => {
   const [profile, setProfile] = useState([]);
   const [userStorage, setUserStorage] = useState({});
   const [tokenStorage, setTokenStorage] = useState({});
-  const [isLogout, setIsLogout] = useState (true)
   const router = useRouter();
 
 
@@ -44,8 +44,10 @@ const profile = () => {
 
   const handleLogout = () => {
     localStorage.clear()
-    router.replace('/')
-    
+    Swal.fire({
+        icon: "success",
+        text: "You have logged out",
+      }).then((result) => (result.isConfirmed ? router.push("/") : null));
   }
   
   return (
@@ -134,7 +136,7 @@ const profile = () => {
           </div>
         </div> 
       </div>
-      <Footer/>
+      <Footer data={tokenStorage}/>
     </>
   )
 }

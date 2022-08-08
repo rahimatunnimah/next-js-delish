@@ -9,11 +9,11 @@ import { useRouter } from "next/router";
 
 const login = () => {
 
-  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter()
+  
   const handleLogin = () => {
     setIsLoading(true)
     axios.post(`http://localhost:8001/api/auth/login`, {

@@ -9,13 +9,15 @@ import "slick-carousel/slick/slick-theme.css"
 import { useRouter } from "next/router";
 
 const home = (props) => {
-  const [newRecipe] = useState(props?.newRecipes)
-  const [popularRecipe] = useState(props?.popularRecipes)
-  const [search, setSearch] = useState('')
+  const [newRecipe] = useState(props?.newRecipes);
+  const [popularRecipe] = useState(props?.popularRecipes);
+  const [search, setSearch] = useState('');
+  const [tokenStorage, setTokenStorage] = useState({});
 
   const router = useRouter()
 
   useEffect(() => {
+    setTokenStorage(localStorage?.getItem("token")),
     newRecipe,
     popularRecipe
   }, [])
@@ -66,7 +68,7 @@ const home = (props) => {
         </div>
       </div>
     </div>
-      <Footer/>
+      <Footer data={tokenStorage}/>
     </>
   );
 };
