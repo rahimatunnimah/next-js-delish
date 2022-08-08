@@ -17,14 +17,14 @@
   cursor: pointer;
 }
 
-.title h3 {
+.title h4 {
   position: absolute;
   color: black;
-  bottom: 80px;
+  bottom: 60px;
   left: 30px;
-  width: 149px;
+  width: 250px;
   height: 84px;
-  line-height: 42px;
+  line-height: 30px;
 }
 
 .title p {
@@ -33,10 +33,10 @@
   height: 16px;
   left: 30px;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 16px;
   color: black;
-  bottom: 50px;
+  bottom: 60px;
 }
 
 .bgEnd {

@@ -14,26 +14,39 @@ import axios from "axios";
 
 const detailRecipe = () => {
     const [detailRecipe, setDetailRecipe] = useState([]);
+    const [commentRecipe, setCommentRecipe] = useState([])
 
-    console.log("detail", detailRecipe)
     const router = useRouter();
     const { id } = router.query;
 
     useEffect(() => {
         getDetailRecipe();
+        getCommentRecipe();
     }, [id]);
 
     const getDetailRecipe = () => {
-    axios.get(`http://localhost:8001/api/recipes/detail/${id}`)
-    .then((res) => {
-      const dataRecipe = res?.data?.data[0];
-      setDetailRecipe(dataRecipe);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-    
-  };
+      axios.get(`http://localhost:8001/api/recipes/detail/${id}`)
+      .then((res) => {
+        const dataRecipe = res?.data?.data[0];
+        setDetailRecipe(dataRecipe);
+      })
+      .catch((err) => {
+        console.log(err);
+      }); 
+    };
+
+    const getCommentRecipe = () => {
+      axios.get(`http://localhost:8001/api/comment/recipe/${id}`)
+      .then((res) => {
+        const dataComment = res?.data?.data;
+        setCommentRecipe(dataComment)
+      })
+      .catch((err) => {
+        console.log(err);
+      }); 
+    };
+
+    console.log("ini comment", commentRecipe)
 
   return (
     <>
@@ -52,7 +65,7 @@ const detailRecipe = () => {
             <div className="row">
                 <div className="col-8">
                     <div className={detailStyle.title}>
-                        <h3>{detailRecipe?.name}</h3>
+                        <h4>{detailRecipe?.name}</h4>
                         <p>By {detailRecipe?.username}</p>
                     </div>
                 </div>
@@ -131,17 +144,21 @@ const detailRecipe = () => {
                   <p>Comment:</p>
                 </div>
               </div>
-              <div className="row mx-4">
-                <div className="col-3 text-center">
-                  <div className={detailStyle.imgComment}>
-                    <Image src={imgUser} />
+              {commentRecipe?.map((item, index) => {
+                return (
+                  <div key={index} className="row mx-4">
+                    <div className="col-3 text-center">
+                      <div className={detailStyle.imgComment}>
+                        <Image src={imgUser} />
+                      </div>
+                    </div>
+                    <div className="col-9 px-0">
+                      <h6>{item.username}</h6>
+                      <p>{item.comment}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="col-9 px-0">
-                  <h6>Ayudia</h6>
-                  <p>Nice recipe. simple and delicious, thankyou</p>
-                </div>
-              </div>
+                )
+              })}
             </div>
           </div>
         </div>

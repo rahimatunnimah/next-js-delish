@@ -86,3 +86,7 @@
 .link {
   cursor: pointer;
 }
+
+.btnLogout {
+  border-radius: 5px;
+}

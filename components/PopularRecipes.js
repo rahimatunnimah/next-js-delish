@@ -6,7 +6,6 @@ import Link from "next/link";
 
 const PopularRecipes = (props) => {
 
-    console.log(props.data.result)
     return (
         <>
         {props?.data?.result?.map((item, index) => {

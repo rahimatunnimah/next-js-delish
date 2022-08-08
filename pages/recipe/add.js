@@ -35,7 +35,8 @@ const addRecipe = () => {
                                     className="form-control form-control-lg mt-3"
                                     id="video"
                                     placeholder="Add Video"
-                                />       
+                                    
+                                />   
                             </div>
                             <div className={`d-grid gap-2 ${addStyle.addButton}`}>
                                 <button

@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Slider from "react-slick";
-import imageRecipe from "../public/images/beef steak.jpg";
 import homeStyle from "../styles/Home.module.css";
+import Link from "next/link";
 
 const NewRecipes = (props) => {
 
@@ -40,23 +40,26 @@ const NewRecipes = (props) => {
       },
     ],
   };
+
   return (
     <>
       <div>
         <Slider {...settings}>
           {props?.data?.result?.map((item, index) => {
-            return (
-              <div key={index} className={homeStyle.cardImage}>
-                <Image src={`http://localhost:8001/${item.recipe_image.substring(
-                    7,
-                    item.recipe_image.length
-                  )}`} height={500} width={500} alt="img-recipe" />
-                <div className="card-img-overlay">
-                  <h5 className={`card-title ${homeStyle.titleCardRecipe}`}>
-                    {item.name}
-                  </h5>
-                </div>
-              </div>
+            return (          
+              <Link href={`/recipe/detail/${item.id}`}>
+                <div key={index} className={homeStyle.cardImage}>
+                  <Image src={`http://localhost:8001/${item.recipe_image.substring(
+                      7,
+                      item.recipe_image.length
+                    )}`} height={500} width={500} alt="img-recipe" />
+                  <div className="card-img-overlay">
+                    <h5 className={`card-title ${homeStyle.titleCardRecipe}`}>
+                      {item.name}
+                    </h5>
+                  </div>
+                </div>          
+              </Link>  
             )
           })}
         </Slider>

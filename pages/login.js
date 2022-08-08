@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 
 
 const login = () => {
+
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -18,13 +20,17 @@ const login = () => {
       email,
       password
     })
-    .then((res)=>{
+    .then((res) => {
+
+      localStorage.setItem("token", res?.data?.token);
+      localStorage.setItem("user", JSON.stringify(res?.data?.user));  
+
       Swal.fire({
           icon: "success",
           text: "login successfully",
         }).then((result) => (result.isConfirmed ? router.replace("/") : null));
     })
-    .catch((err)=> {
+    .catch((err) => {
       Swal.fire({
           icon: "error",
           text: err?.response?.data,

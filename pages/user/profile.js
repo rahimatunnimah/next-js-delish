@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from "next/image";
 import imageUser from "../../public/images/user.png";
 import profileStyle from "../../styles/profile.module.css";
@@ -6,8 +6,48 @@ import {BiLike} from "react-icons/bi";
 import {FiUser, FiBookmark, FiChevronRight, FiAward} from "react-icons/fi";
 import Link from "next/link";
 import Footer from "../../components/Footer";
+import axios from "axios"
+import Router, { useRouter } from "next/router";
 
 const profile = () => {
+  const [profile, setProfile] = useState([]);
+  const [userStorage, setUserStorage] = useState({});
+  const [tokenStorage, setTokenStorage] = useState({});
+  const [isLogout, setIsLogout] = useState (true)
+  const router = useRouter();
+
+
+  useEffect(() => {
+    setUserStorage(JSON.parse(localStorage?.getItem("user")));
+    setTokenStorage(localStorage?.getItem("token"));
+    getProfile();
+  }, [userStorage?.username])
+  
+  console.log("initoken", tokenStorage)
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${tokenStorage}`,
+    },
+  };
+
+  const getProfile = () => {
+    axios
+      .get(`http://localhost:8001/api/users/${userStorage?.id}`, config)
+      .then((res) => {
+        setProfile(res?.data?.data[0])
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleLogout = () => {
+    localStorage.clear()
+    router.replace('/')
+    
+  }
+  
   return (
     <>
       <div className="main">
@@ -16,7 +56,15 @@ const profile = () => {
             <div className={`row align-items-center justify-content-center ${profileStyle.bgTop}`}>
               <div className="col-4 text-center">
                 <Image src={imageUser}/>
-                <p className={`mt-2 ${profileStyle.name}`}>Mareta Lopeda</p>
+                <p className={`mt-2 ${profileStyle.name}`}>{profile.username}</p>
+                <div className={`d-grid gap-2`}>
+                    <button
+                      type="submit"
+                      className={`btn btn-light mb-5`}
+                      onClick={handleLogout}>
+                      Logout
+                    </button>
+                </div>
               </div>
             </div>
             <div className='container'>
