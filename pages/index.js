@@ -6,29 +6,41 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 import "slick-carousel/slick/slick.css" 
 import "slick-carousel/slick/slick-theme.css"
+import { useRouter } from "next/router";
 
 const home = (props) => {
-  const [newRecipe] = useState(props.newRecipes)
-  const [popularRecipe] = useState(props.popularRecipes)
+  const [newRecipe] = useState(props?.newRecipes)
+  const [popularRecipe] = useState(props?.popularRecipes)
+  const [search, setSearch] = useState('')
+
+  const router = useRouter()
 
   useEffect(() => {
     newRecipe,
     popularRecipe
   }, [])
-  
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    router.push(`/recipe/search/${search}`)  
+  }
+
   return (
     <>
-    <div className="main">
+    <div className="container main">
       <div className="row justify-content-center">
         <div className="col-md-4"> 
           <div style={{minHeight:"90vh"}}>
             <div className={homeStyle.searchInput}>
-              <input
-                className="form-control form-control-lg mt-4"
-                type="text"
-                placeholder="Search Pasta, Bread, etc"
-              />
-              </div>
+              <form onSubmit={handleSubmit}>
+                <input
+                  className="form-control form-control-lg mt-4"
+                  type="text"
+                  placeholder="Search Pasta, Bread, etc"
+                  onChange={(e)=> setSearch(e?.target?.value)}                 
+                />
+              </form>
+            </div>
             <div className="row mt-4 mb-3">
               <h5>New Recipes</h5>
             </div>
@@ -62,16 +74,15 @@ const home = (props) => {
 export async function getServerSideProps(context) {
   // Fetch data from external API
 
-  const [newRecipeRes, popularRecipeRes] = await Promise.all([
+  const [resNewRecipe, resPopularRecipe] = await Promise.all([
     fetch(`http://localhost:8001/api/recipes/latest/recipe`),
     fetch(`http://localhost:8001/api/recipes/popular/recipe`)
   ]);
 
   const [newRecipes, popularRecipes] = await Promise.all([
-    newRecipeRes.json(), 
-    popularRecipeRes.json()
+    resNewRecipe.json(), 
+    resPopularRecipe.json()
   ]);
-
   // Pass data to the page via props
   return { props: { newRecipes, popularRecipes } };
 }

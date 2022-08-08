@@ -50,6 +50,9 @@ a {
   overflow-x: hidden;
 }
 
+.cursor {
+  cursor: pointer;
+}
 /* detail pages */
 
 #detailPages .nav-link {

@@ -1,9 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import loginStyle from "../styles/login.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useRouter } from "next/router";
+
 
 const login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter()
+  const handleLogin = () => {
+    setIsLoading(true)
+    axios.post(`http://localhost:8001/api/auth/login`, {
+      email,
+      password
+    })
+    .then((res)=>{
+      Swal.fire({
+          icon: "success",
+          text: "login successfully",
+        }).then((result) => (result.isConfirmed ? router.replace("/") : null));
+    })
+    .catch((err)=> {
+      Swal.fire({
+          icon: "error",
+          text: err?.response?.data,
+        })
+    })
+    .finally(() => {
+      setIsLoading(false)
+    })
+  }
 
   return (
     <>
@@ -22,13 +52,17 @@ const login = () => {
               <p className="text-center">Log in to your exiting account.</p>            
             </div>
             <div>
-              <form>
+              <form onSubmit={(e)=> {
+                e.preventDefault()
+                handleLogin()
+              }}>
                 <div className={loginStyle.loginForm}>
                   <input                  
                     type="email"
                     className="form-control form-control-lg"
                     id="email"
                     placeholder="example@gmail.com"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                  
                 </div>
@@ -38,6 +72,7 @@ const login = () => {
                     className="form-control form-control-lg mt-3"
                     id="password"
                     placeholder="password"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div className={loginStyle.forgotPassword}>
@@ -46,8 +81,9 @@ const login = () => {
                 <div className={`d-grid gap-2 ${loginStyle.loginButton}`}>
                   <button
                     type="submit"
+                    disabled={isLoading}
                     className={`btn btn-warning mt-2`}>
-                    LOG IN
+                    {isLoading ? "Loading..." : "Login"}
                   </button>
                 </div>
                 <div className={loginStyle.loginFooter}>

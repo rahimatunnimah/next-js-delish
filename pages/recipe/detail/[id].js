@@ -1,23 +1,49 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import bgRecipe from "../../public/images/Rectangle 5.png";
-import imgUser from "../../public/images/user.png";
+import imgUser from "../../../public/images/user.png";
 import { BiLike } from "react-icons/bi";
 import { FiBookmark, FiPlay } from "react-icons/fi";
 import { IoMdArrowBack } from "react-icons/io";
-import detailStyle from "../../styles/detail.module.css";
-import popularStyle from "../../styles/popular.module.css";
+import detailStyle from "../../../styles/detail.module.css";
+import popularStyle from "../../../styles/popular.module.css";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 const detailRecipe = () => {
+    const [detailRecipe, setDetailRecipe] = useState([]);
+
+    console.log("detail", detailRecipe)
+    const router = useRouter();
+    const { id } = router.query;
+
+    useEffect(() => {
+        getDetailRecipe();
+    }, [id]);
+
+    const getDetailRecipe = () => {
+    axios.get(`http://localhost:8001/api/recipes/detail/${id}`)
+    .then((res) => {
+      const dataRecipe = res?.data?.data[0];
+      setDetailRecipe(dataRecipe);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    
+  };
+
   return (
     <>
       <div id="detailPage" className="row justify-content-center">
         <div className="col-md-4">
           <div className={`row ${detailStyle.bgStart}`}>
-            <Image src={bgRecipe} />`
+                <Image src={`http://localhost:8001/${detailRecipe?.recipe_image?.substring(
+                    7,
+                    detailRecipe.recipe_image.length
+                )}`} height={500} width={500} alt="img-recipe" />
             <div className={detailStyle.iconBack}>
                 <Link href="/" passHref>
                     <IoMdArrowBack size={30}/>
@@ -26,8 +52,8 @@ const detailRecipe = () => {
             <div className="row">
                 <div className="col-8">
                     <div className={detailStyle.title}>
-                        <h3>Sandwich with Egg</h3>
-                        <p>By Chef Ronald Humson</p>
+                        <h3>{detailRecipe?.name}</h3>
+                        <p>By {detailRecipe?.username}</p>
                     </div>
                 </div>
                 <div className="col-2" style={{paddingLeft:"28px"}}>
@@ -53,15 +79,8 @@ const detailRecipe = () => {
                     <div className="container">
                         <div className="row mx-3">
                             <div className={detailStyle.ingredients}>
-                                - 2 slices whole-grain bread 
-                                (bakery-fresh recommended)
-                                - 1 tablespoon hummus
-                                - 2 slices tomato
-                                - 1/2 small cucumber, thinly sliced 
-                                lengthwise
-                                - 1 slice low-fat cheese
+                                {detailRecipe.ingredients}
                             </div>
-
                         </div>
                     </div>
                 </Tab>
