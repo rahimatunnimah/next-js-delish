@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import imgUser from "../../../public/images/user.png";
 import { BiLike } from "react-icons/bi";
 import { FiBookmark, FiPlay } from "react-icons/fi";
 import { IoMdArrowBack } from "react-icons/io";
@@ -11,18 +10,19 @@ import Tabs from "react-bootstrap/Tabs";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
+import CommentDetail from "../../../components/CommentDetail";
+import AddComment from "../../../components/AddComment";
 
 const detailRecipe = () => {
     const [detailRecipe, setDetailRecipe] = useState([]);
-    const [commentRecipe, setCommentRecipe] = useState([]);
-
+    const [userStorage, setUserStorage] = useState({});
     const router = useRouter();
     const { id } = router.query;
 
     useEffect(() => {
+        setUserStorage(JSON.parse(localStorage?.getItem("user")));
         getDetailRecipe();
-        getCommentRecipe();
-    }, [id]);
+    }, [id, userStorage?.id]);
 
     const getDetailRecipe = () => {
       axios.get(`http://localhost:8001/api/recipes/detail/${id}`)
@@ -35,18 +35,7 @@ const detailRecipe = () => {
       }); 
     };
 
-    const getCommentRecipe = () => {
-      axios.get(`http://localhost:8001/api/comment/recipe/${id}`)
-      .then((res) => {
-        const dataComment = res?.data?.data;
-        setCommentRecipe(dataComment)
-      })
-      .catch((err) => {
-        console.log(err);
-      }); 
-    };
-
-
+    
   return (
     <>
       <div id="detailPage" className="row justify-content-center">
@@ -117,47 +106,12 @@ const detailRecipe = () => {
                   </div>
                 </Tab>
               </Tabs>
-              <div className="mt-4 mx-4">
-                <form>
-                  <div className={detailStyle.contentComment}>
-                    <textarea
-                      className={`form-control ${detailStyle.commentText}`}
-                      id="exampleFormControlTextarea1"
-                      rows="9"
-                    >
-                      Comment :
-                    </textarea>
-                  </div>
-                  <div class="d-grid gap-2 mt-4">
-                    <button
-                      className="btn btn-warning text-white btn-lg"
-                      type="button"
-                    >
-                      Post Comment
-                    </button>
-                  </div>
-                </form>
+              <div>
+                <AddComment/>
               </div>
-              <div className="mt-4 mx-4">
-                <div className={detailStyle.comment}>
-                  <p>Comment:</p>
-                </div>
+              <div>
+                <CommentDetail/>
               </div>
-              {commentRecipe?.map((item, index) => {
-                return (
-                  <div key={index} className="row mx-4">
-                    <div className="col-3 text-center">
-                      <div className={detailStyle.imgComment}>
-                        <Image src={imgUser} />
-                      </div>
-                    </div>
-                    <div className="col-9 px-0">
-                      <h6>{item.username}</h6>
-                      <p>{item.comment}</p>
-                    </div>
-                  </div>
-                )
-              })}
             </div>
           </div>
         </div>
