@@ -3,72 +3,76 @@ import homeStyle from "../styles/Home.module.css";
 import NewRecipes from "../components/NewRecipes";
 import PopularRecipes from "../components/PopularRecipes";
 import Footer from "../components/Footer";
+import { FiSearch } from "react-icons/fi";
 import Link from "next/link";
-import "slick-carousel/slick/slick.css" 
-import "slick-carousel/slick/slick-theme.css"
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/router";
 
 const home = (props) => {
   const [newRecipe] = useState(props?.newRecipes);
   const [popularRecipe] = useState(props?.popularRecipes);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [tokenStorage, setTokenStorage] = useState({});
 
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
-    setTokenStorage(localStorage?.getItem("token")),
-    newRecipe,
-    popularRecipe
-  }, [])
+    setTokenStorage(localStorage?.getItem("token")), newRecipe, popularRecipe;
+  }, []);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    router.push(`/recipe/search/${search}`)  
-  }
+    e.preventDefault();
+    router.push(`/recipe/search/${search}`);
+  };
 
   return (
     <>
-    <div className="container main">
-      <div className="row justify-content-center">
-        <div className="col-md-4"> 
-          <div style={{minHeight:"90vh"}}>
-            <div className={homeStyle.searchInput}>
-              <form onSubmit={handleSubmit}>
-                <input
-                  className="form-control form-control-lg mt-4"
-                  type="text"
-                  placeholder="Search Pasta, Bread, etc"
-                  onChange={(e)=> setSearch(e?.target?.value)}                 
-                />
-              </form>
-            </div>
-            <div className="row mt-4 mb-3">
-              <h5>New Recipes</h5>
-            </div>
-            <div className="row">
-              <NewRecipes data={newRecipe}/>
-            </div>
-            <div className="row my-4">
-              <div className="col-8">
-                <h5>Popular Recipes</h5> 
+      <div className="container main">
+        <div className="row justify-content-center">
+          <div className="col-md-4">
+            <div style={{ minHeight: "90vh" }}>
+              <div className={homeStyle.searchInput}>
+                <form onSubmit={handleSubmit}>
+                  <div className="input-group mt-4">
+                    <span className="input-group-text" id="basic-addon1">
+                      <FiSearch color="#C4C4C4" size={30} />
+                    </span>
+                    <input
+                      className="form-control form-control-lg"
+                      type="text"
+                      placeholder="Search Pasta, Bread, etc"
+                      onChange={(e) => setSearch(e?.target?.value)}
+                    />
+                  </div>
+                </form>
               </div>
-              <div className="col-4 text-end">
-                <div className={homeStyle.moreInfo}>
-                  <Link href="/recipe/popular" passHref>
-                    <p>More info</p> 
-                  </Link>
+              <div className="row mt-4 mb-3">
+                <h5>New Recipes</h5>
+              </div>
+              <div className="row">
+                <NewRecipes data={newRecipe} />
+              </div>
+              <div className="row my-4">
+                <div className="col-8">
+                  <h5>Popular Recipes</h5>
+                </div>
+                <div className="col-4 text-end">
+                  <div className={homeStyle.moreInfo}>
+                    <Link href="/recipe/popular" passHref>
+                      <p>More info</p>
+                    </Link>
+                  </div>
                 </div>
               </div>
+              <div className="row">
+                <PopularRecipes data={popularRecipe} />
+              </div>
             </div>
-            <div className="row">
-              <PopularRecipes data={popularRecipe}/>
-            </div> 
-          </div>   
+          </div>
         </div>
       </div>
-    </div>
-      <Footer data={tokenStorage}/>
+      <Footer data={tokenStorage} />
     </>
   );
 };
@@ -78,12 +82,12 @@ export async function getServerSideProps(context) {
 
   const [resNewRecipe, resPopularRecipe] = await Promise.all([
     fetch(`http://localhost:8001/api/recipes/latest/recipe`),
-    fetch(`http://localhost:8001/api/recipes/popular/recipe`)
+    fetch(`http://localhost:8001/api/recipes/popular/recipe`),
   ]);
 
   const [newRecipes, popularRecipes] = await Promise.all([
-    resNewRecipe.json(), 
-    resPopularRecipe.json()
+    resNewRecipe.json(),
+    resPopularRecipe.json(),
   ]);
   // Pass data to the page via props
   return { props: { newRecipes, popularRecipes } };

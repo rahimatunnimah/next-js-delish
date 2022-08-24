@@ -5,7 +5,6 @@ import homeStyle from "../styles/Home.module.css";
 import Link from "next/link";
 
 const NewRecipes = (props) => {
-
   const settings = {
     dots: true,
     infinite: false,
@@ -46,21 +45,23 @@ const NewRecipes = (props) => {
       <div>
         <Slider {...settings}>
           {props?.data?.result?.map((item, index) => {
-            return (          
-              <Link href={`/recipe/detail/${item.id}`}>
-                <div key={index} className={homeStyle.cardImage}>
-                  <Image src={`http://localhost:8001/${item.recipe_image.substring(
-                      7,
-                      item.recipe_image.length
-                    )}`} height={500} width={500} alt="img-recipe" />
+            return (
+              <Link key={index} href={`/recipe/detail/${item.id}`}>
+                <div className={homeStyle.cardImage}>
+                  <Image
+                    src={item.recipe_image}
+                    height={500}
+                    width={500}
+                    alt="img-recipe"
+                  />
                   <div className="card-img-overlay">
                     <h5 className={`card-title ${homeStyle.titleCardRecipe}`}>
                       {item.name}
                     </h5>
                   </div>
-                </div>          
-              </Link>  
-            )
+                </div>
+              </Link>
+            );
           })}
         </Slider>
       </div>

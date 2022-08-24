@@ -52,10 +52,7 @@ const popularList = () => {
                           <div key={index} className="row cursor">
                               <div className="col-3 mb-3 text-center">
                               <div className={homeStyle.popularImage}> 
-                                  <Image src={`http://localhost:8001/${item?.recipe_image?.substring(
-                                      7,
-                                      item.recipe_image.length
-                                  )}`} height={500} width={500} alt="img-recipe" />
+                                  <Image src={item?.recipe_image} height={500} width={500} alt="img-recipe" />
                               </div>
                               </div>
                               <div className="col-5 px-0">

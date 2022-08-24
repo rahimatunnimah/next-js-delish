@@ -49,10 +49,7 @@ const SearchRecipes = (props) => {
                             <div key={index} className="row mt-3">
                             <div className="col-3 text-center">
                                 <div className={homeStyle.popularImage}> 
-                                <Image src={`http://localhost:8001/${item?.recipe_image?.substring(
-                                    7,
-                                    item.recipe_image.length
-                                )}`} height={500} width={500} alt="img-recipe" />
+                                <Image src={item?.recipe_image} height={500} width={500} alt="img-recipe" />
                                 </div>
                             </div>
                             <div className="col-9 px-0">               

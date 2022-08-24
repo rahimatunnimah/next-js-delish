@@ -22,35 +22,42 @@ const Footer = (props) => {
     }
   };
   return (
-        <div
+    <div
       className={`row align-items-center justify-content-center ${homeStyle.footer}`}
     >
       <div className="col-md-4">
         <div className={`row justify-content-center`}>
           <div className="col-3">
             <Link href="/" passHref>
-              <FiHome size={25}/>
+              <FiHome
+                size={25}
+                color={router.pathname == "/" ? "#eec302" : null}
+              />
             </Link>
           </div>
           <div className="col-3">
             <Link href="/recipe/add" passHref>
-                <MdOutlineAddBox size={27}/>
+              <MdOutlineAddBox
+                size={27}
+                color={router.pathname == "/recipe/add" ? "#eec302" : null}
+              />
             </Link>
           </div>
           <div className="col-3">
-            <BsChat size={25}/>
+            <BsChat size={25} />
           </div>
-          <div className="col-3"> 
+          <div className="col-3">
             <div onClick={handleRoute}>
-                <FiUser size={25}/>
-              </div>                                        
+              <FiUser
+                size={25}
+                color={router.pathname == "/user/profile" ? "#eec302" : null}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>       
+    </div>
   );
 };
 
 export default Footer;
-
-
