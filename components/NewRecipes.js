@@ -54,10 +54,10 @@ const NewRecipes = (props) => {
                     width={500}
                     alt="img-recipe"
                   />
-                  <div className="card-img-overlay">
-                    <h5 className={`card-title ${homeStyle.titleCardRecipe}`}>
-                      {item.name}
-                    </h5>
+                  <div
+                    className={`card-img-overlay ${homeStyle.titleCardRecipe}`}
+                  >
+                    <h5>{item.name}</h5>
                   </div>
                 </div>
               </Link>

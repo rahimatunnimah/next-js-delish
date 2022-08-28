@@ -16,16 +16,20 @@
   height: 140px !important;
 }
 
-.titleCardRecipe {
-  padding-top: 100px;
-  color: black;
+.titleCardRecipe h5 {
+  color: #f5f5f5;
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
-  width: 100px;
-  height: 36px;
-  margin-left: 10px;
+  width: 110px;
+  height: 50px;
+  margin-top: 90px;
+  padding-left: 15px;
+  padding-top: 5px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
   z-index: 9;
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .moreInfo p {
