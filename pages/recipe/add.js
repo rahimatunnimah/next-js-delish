@@ -4,25 +4,38 @@ import Footer from "../../components/Footer";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 const addRecipe = () => {
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [category, setCategory] = useState(1);
+  const [category, setCategory] = useState([]);
+  const [idCategory, setIdCategory] = useState(1);
   const [recipeImage, setRecipeImage] = useState(null);
-  const [tokenStorage, setTokenStorage] = useState({});
-  const [userStorage, setUserStorage] = useState({});
+  const { auth } = useSelector((state) => state);
+  const { user } = auth;
   const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
 
   useEffect(() => {
-    setTokenStorage(localStorage?.getItem("token")),
-      setUserStorage(JSON.parse(localStorage?.getItem("user")));
+    getCategory();
   }, []);
+
+  const getCategory = () => {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/recipes/category`)
+      .then((res) => {
+        setCategory(res?.data?.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const config = {
     headers: {
-      Authorization: `Bearer ${tokenStorage}`,
+      Authorization: `Bearer ${auth?.token}`,
       "Content-Type": "multipart/form-data; ",
     },
   };
@@ -33,12 +46,12 @@ const addRecipe = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("ingredients", ingredients);
-    formData.append("category_id", category);
+    formData.append("category_id", idCategory);
     formData.append("recipe_image", recipeImage);
-    formData.append("user_id", userStorage?.id);
+    formData.append("user_id", user?.id);
 
     axios
-      .post(`http://localhost:8001/api/recipes/add`, formData, config)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/recipes/add`, formData, config)
       .then((res) => {
         console.log(res);
         Swal.fire({
@@ -65,7 +78,7 @@ const addRecipe = () => {
               <div className={addStyle.addForm}>
                 <input
                   type="text"
-                  className="form-control form-control-lg mt-4"
+                  className="form-control shadow-none mt-4"
                   id="name"
                   placeholder="Title"
                   onChange={(e) => setName(e.target.value)}
@@ -74,29 +87,34 @@ const addRecipe = () => {
               <div className={addStyle.formIngredients}>
                 <textarea
                   type="text"
-                  className="form-control form-ingredients mt-3"
+                  className="form-control shadow-none form-ingredients mt-3"
                   id="ingredients"
                   placeholder="Ingredients"
                   onChange={(e) => setIngredients(e.target.value)}
                 />
               </div>
-              <div class="form-group mt-3">
-                <select
-                  class="form-control"
-                  id="sel1"
-                  onChange={(e) => setCategory(e.target.value)}
-                >
-                  <option value={1}>Category Heavy meal</option>
-                  <option value={2}>Category Vegetarian</option>
-                  <option value={3}>Category Dessert</option>
-                  <option value={4}>Category Drink</option>
-                </select>
+              <div className={addStyle.formCategory}>
+                <div className="row form-floating mt-3">
+                  <select
+                    className="form-select shadow-none"
+                    id="floatingSelect"
+                    aria-label="Floating label select example"
+                    onChange={(e) => setIdCategory(e.target.value)}
+                  >
+                    {category.map((item, index) => (
+                      <option key={index} value={item?.id}>
+                        {item?.category_name}
+                      </option>
+                    ))}
+                  </select>
+                  <label htmlFor="floatingSelect">Category</label>
+                </div>
               </div>
 
               <div className={addStyle.addForm}>
                 <input
                   type="file"
-                  className="form-control form-control-lg mt-3"
+                  className="form-control mt-3"
                   id="video"
                   onChange={(e) => setRecipeImage(e.target.files[0])}
                 />
@@ -115,7 +133,7 @@ const addRecipe = () => {
           </div>
         </div>
       </div>
-      <Footer data={tokenStorage} />
+      <Footer data={auth?.token} />
     </>
   );
 };

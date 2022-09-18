@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import imageUser from "../../public/images/user.png";
 import profileStyle from "../../styles/profile.module.css";
 import { BiLike } from "react-icons/bi";
 import { FiUser, FiBookmark, FiChevronRight, FiAward } from "react-icons/fi";
@@ -9,29 +8,31 @@ import Footer from "../../components/Footer";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Swal from "sweetalert2";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../redux/features/authSlice";
 
 const profile = () => {
   const [profile, setProfile] = useState([]);
-  const [userStorage, setUserStorage] = useState({});
-  const [tokenStorage, setTokenStorage] = useState({});
+  const { auth } = useSelector((state) => state);
+  const { user } = auth;
+  const dispatch = useDispatch();
   const router = useRouter();
 
   useEffect(() => {
-    setUserStorage(JSON.parse(localStorage?.getItem("user")));
-    setTokenStorage(localStorage?.getItem("token"));
     getProfile();
   }, []);
 
   const config = {
     headers: {
-      Authorization: `Bearer ${tokenStorage}`,
+      Authorization: `Bearer ${auth?.token}`,
     },
   };
 
   const getProfile = () => {
     axios
-      .get(`http://localhost:8001/api/users/${userStorage?.id}`, config)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/users/${user?.id}`, config)
       .then((res) => {
+        // console.log(res);
         setProfile(res?.data?.data[0]);
       })
       .catch((err) => {
@@ -40,7 +41,7 @@ const profile = () => {
   };
 
   const handleLogout = () => {
-    localStorage.clear();
+    dispatch(logout());
     Swal.fire({
       icon: "success",
       text: "You have logged out",
@@ -55,32 +56,15 @@ const profile = () => {
             <div
               className={`row align-items-center justify-content-center ${profileStyle.bgTop}`}
             >
-              <div className="col-4 text-center">
-                <Image src={imageUser} />
-                <p className={`mt-2 ${profileStyle.name}`}>
-                  {profile.username}
-                </p>
+              <div className={`col-4 text-center ${profileStyle.profile}`}>
+                <Image src={profile.image} height={100} width={100} />
+                <p className="mt-2">{profile.username}</p>
               </div>
             </div>
             <div className="container">
               <div
                 className={`row justify-content-center ${profileStyle.bgBottom}`}
               >
-                <Link href="/user/edit" passHref>
-                  <div className="row mt-4 cursor">
-                    <div className="col-2 text-center">
-                      <div className={profileStyle.icon}>
-                        <FiUser size={30} />
-                      </div>
-                    </div>
-                    <div className="col-8 mt-2">
-                      <p className={profileStyle.titleContent}>Edit Profile</p>
-                    </div>
-                    <div className={`col-2 ${profileStyle.link}`}>
-                      <FiChevronRight />
-                    </div>
-                  </div>
-                </Link>
                 <Link href="/user/my-recipe" passHref>
                   <div className="row mt-4 cursor">
                     <div className="col-2 text-center">
@@ -90,6 +74,21 @@ const profile = () => {
                     </div>
                     <div className="col-8 mt-2">
                       <p className={profileStyle.titleContent}>My Recipe</p>
+                    </div>
+                    <div className={`col-2 ${profileStyle.link}`}>
+                      <FiChevronRight />
+                    </div>
+                  </div>
+                </Link>
+                {/* <Link href="/user/edit" passHref>
+                  <div className="row mt-4 cursor">
+                    <div className="col-2 text-center">
+                      <div className={profileStyle.icon}>
+                        <FiUser size={30} />
+                      </div>
+                    </div>
+                    <div className="col-8 mt-2">
+                      <p className={profileStyle.titleContent}>Edit Profile</p>
                     </div>
                     <div className={`col-2 ${profileStyle.link}`}>
                       <FiChevronRight />
@@ -125,8 +124,8 @@ const profile = () => {
                       <FiChevronRight />
                     </div>
                   </div>
-                </Link>
-                <div className={`d-grid gap-2`}>
+                </Link> */}
+                <div className={`d-grid gap-2 ${profileStyle.btnLogout}`}>
                   <button
                     type="submit"
                     className={`btn btn-warning mt-2`}
@@ -140,7 +139,7 @@ const profile = () => {
           </div>
         </div>
       </div>
-      <Footer data={tokenStorage} />
+      <Footer data={auth?.token} />
     </>
   );
 };

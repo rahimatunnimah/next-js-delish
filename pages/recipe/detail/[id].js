@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { BiLike } from "react-icons/bi";
-import { FiBookmark, FiPlay } from "react-icons/fi";
+// import { BiLike } from "react-icons/bi";
+// import { FiBookmark, FiPlay } from "react-icons/fi";
 import { IoMdArrowBack } from "react-icons/io";
 import detailStyle from "../../../styles/detail.module.css";
 import Tab from "react-bootstrap/Tab";
@@ -13,15 +13,16 @@ import CommentDetail from "../../../components/CommentDetail";
 import VideoRecipe from "../../../components/VideoRecipe";
 import AddVideo from "../../../components/AddVideo";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 const detailRecipe = () => {
   const [detailRecipe, setDetailRecipe] = useState([]);
   const [comment, setComment] = useState([]);
   const [commentRecipe, setCommentRecipe] = useState([]);
   const [video, setVideo] = useState([]);
-  const [userStorage, setUserStorage] = useState({});
-  const [tokenStorage, setTokenStorage] = useState({});
   const [show, setShow] = useState(false);
+  const { auth } = useSelector((state) => state);
+  const { user } = auth;
 
   const router = useRouter();
   const { id } = router.query;
@@ -30,22 +31,20 @@ const detailRecipe = () => {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    setUserStorage(JSON.parse(localStorage?.getItem("user")));
-    setTokenStorage(localStorage?.getItem("token"));
     getDetailRecipe();
     getCommentRecipe();
     getVideoRecipe();
-  }, [id, userStorage?.id, video?.id]);
+  }, []);
 
   const config = {
     headers: {
-      Authorization: `Bearer ${tokenStorage}`,
+      Authorization: `Bearer ${auth.token}`,
     },
   };
 
   const getDetailRecipe = () => {
     axios
-      .get(`http://localhost:8001/api/recipes/detail/${id}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/recipes/detail/${id}`)
       .then((res) => {
         const dataRecipe = res?.data?.data[0];
         setDetailRecipe(dataRecipe);
@@ -57,7 +56,7 @@ const detailRecipe = () => {
 
   const getCommentRecipe = () => {
     axios
-      .get(`http://localhost:8001/api/comment/recipe/${id}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/comment/recipe/${id}`)
       .then((res) => {
         const dataComment = res?.data?.data;
         setCommentRecipe(dataComment);
@@ -72,10 +71,10 @@ const detailRecipe = () => {
     const body = {
       comment,
       recipe_id: detailRecipe?.id,
-      user_id: userStorage?.id,
+      user_id: user.id,
     };
     axios
-      .post(`http://localhost:8001/api/comment/add`, body, config)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/comment/add`, body, config)
       .then((res) => {
         router.reload();
       })
@@ -89,7 +88,7 @@ const detailRecipe = () => {
 
   const getVideoRecipe = () => {
     axios
-      .get(`http://localhost:8001/api/recipes/video/${id}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/recipes/video/${id}`)
       .then((res) => {
         const dataVideo = res?.data?.data;
         setVideo(dataVideo);
@@ -98,6 +97,9 @@ const detailRecipe = () => {
         console.log(err);
       });
   };
+
+  const userId = user?.id;
+  const useriIdRecipe = detailRecipe?.user_id;
 
   return (
     <>
@@ -122,7 +124,7 @@ const detailRecipe = () => {
                   <p>By {detailRecipe?.username}</p>
                 </div>
               </div>
-              <div className="col-2" style={{ paddingLeft: "28px" }}>
+              {/* <div className="col-2" style={{ paddingLeft: "28px" }}>
                 <div className={detailStyle.iconBookmark}>
                   <FiBookmark size={25} />
                 </div>
@@ -131,7 +133,7 @@ const detailRecipe = () => {
                 <div className={detailStyle.iconLike}>
                   <BiLike size={25} />
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className={`row ${detailStyle.bgEnd}`}>
@@ -151,22 +153,24 @@ const detailRecipe = () => {
                   </div>
                 </Tab>
                 <Tab eventKey="video" title="Video Step">
-                  {userStorage?.id === detailRecipe?.user_id ? (
-                    <>
+                  <div className="p-2">
+                    {userId === useriIdRecipe ? (
+                      <>
+                        <VideoRecipe data={video} />
+                        <AddVideo
+                          show={show}
+                          handleShow={handleShow}
+                          handleClose={handleClose}
+                          idRecipe={useriIdRecipe}
+                          idUser={userId}
+                          config={config}
+                          getVideo={getVideoRecipe}
+                        />
+                      </>
+                    ) : (
                       <VideoRecipe data={video} />
-                      <AddVideo
-                        show={show}
-                        handleShow={handleShow}
-                        handleClose={handleClose}
-                        idRecipe={detailRecipe?.id}
-                        idUser={userStorage?.id}
-                        config={config}
-                        getVideo={getVideoRecipe}
-                      />
-                    </>
-                  ) : (
-                    <VideoRecipe data={video} />
-                  )}
+                    )}
+                  </div>
                 </Tab>
               </Tabs>
               <div className="mt-4 mx-4">

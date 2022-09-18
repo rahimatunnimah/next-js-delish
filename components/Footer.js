@@ -1,7 +1,7 @@
 import React from "react";
 import { FiHome } from "react-icons/fi";
 import { MdOutlineAddBox } from "react-icons/md";
-import { BsChat } from "react-icons/bs";
+import { ImSpoonKnife } from "react-icons/im";
 import { FiUser } from "react-icons/fi";
 import homeStyle from "../styles/Home.module.css";
 import Link from "next/link";
@@ -44,7 +44,14 @@ const Footer = (props) => {
             </Link>
           </div>
           <div className="col-3">
-            <BsChat size={25} />
+            <Link href="/recipe/all-recipe" passHref>
+              <ImSpoonKnife
+                size={25}
+                color={
+                  router.pathname == "/recipe/all-recipe" ? "#eec302" : null
+                }
+              />
+            </Link>
           </div>
           <div className="col-3">
             <div onClick={handleRoute}>

@@ -25,7 +25,7 @@ const register = () => {
       });
     } else {
       axios
-        .post(`http://localhost:8001/api/auth/register`, {
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
           username,
           email,
           phone,
@@ -51,7 +51,7 @@ const register = () => {
         });
     }
   };
-
+ 
   return (
     <>
       <div className="container">

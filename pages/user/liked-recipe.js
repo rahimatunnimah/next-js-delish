@@ -4,31 +4,28 @@ import Image from "next/image";
 import homeStyle from "../../styles/Home.module.css";
 import { IoIosArrowBack } from "react-icons/io";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 const likedRecipe = () => {
   const [likedRecipe, setLikedRecipe] = useState([]);
-  const [tokenStorage, setTokenStorage] = useState({});
-  const [userStorage, setUserStorage] = useState({});
-
-  const router = useRouter();
+  const { auth } = useSelector((state) => state);
+  const { user } = auth;
 
   useEffect(() => {
-    setUserStorage(JSON.parse(localStorage?.getItem("user")));
-    setTokenStorage(localStorage?.getItem("token")), getLikedRecipe();
-  }, [userStorage.id]);
+    getLikedRecipe();
+  }, []);
 
   const config = {
     headers: {
-      Authorization: `Bearer ${tokenStorage}`,
+      Authorization: `Bearer ${auth?.token}`,
     },
   };
 
   const getLikedRecipe = () => {
     axios
       .get(
-        `http://localhost:8001/api/users/liked/recipe/${userStorage?.id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/users/liked/recipe/${user?.id}`,
         config
       )
       .then((res) => {

@@ -8,17 +8,18 @@ import Link from "next/link";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const home = (props) => {
   const [newRecipe] = useState(props?.newRecipes);
   const [popularRecipe] = useState(props?.popularRecipes);
   const [search, setSearch] = useState("");
-  const [tokenStorage, setTokenStorage] = useState({});
+  const { auth } = useSelector((state) => state);
 
   const router = useRouter();
 
   useEffect(() => {
-    setTokenStorage(localStorage?.getItem("token")), newRecipe, popularRecipe;
+    newRecipe, popularRecipe;
   }, []);
 
   const handleSubmit = (e) => {
@@ -72,7 +73,7 @@ const home = (props) => {
           </div>
         </div>
       </div>
-      <Footer data={tokenStorage} />
+      <Footer data={auth?.token} />
     </>
   );
 };
@@ -81,8 +82,8 @@ export async function getServerSideProps(context) {
   // Fetch data from external API
 
   const [resNewRecipe, resPopularRecipe] = await Promise.all([
-    fetch(`http://localhost:8001/api/recipes/latest/recipe`),
-    fetch(`http://localhost:8001/api/recipes/popular/recipe`),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipes/latest/recipe`),
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipes/popular/recipe`),
   ]);
 
   const [newRecipes, popularRecipes] = await Promise.all([

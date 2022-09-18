@@ -1,0 +1,22 @@
+.titlePage p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 23px;
+  color: #f1cd31;
+  margin-bottom: 0px;
+}
+
+.back {
+  background-color: #F8F8FA;
+  padding: 10px;
+  font-size: 40px;
+  border-radius: 8px;
+}
+
+.sortActive {
+  background-color: #F1CD31;
+  padding: 8px;
+  font-size: 40px;
+  color: white;
+}

@@ -6,23 +6,25 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { FiUser, FiLock } from "react-icons/fi";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/features/authSlice";
 
-const login = () => {
+const loginRequest = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
     setIsLoading(true);
     axios
-      .post(`http://localhost:8001/api/auth/login`, {
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
         email,
         password,
       })
       .then((res) => {
-        localStorage.setItem("token", res?.data?.token);
-        localStorage.setItem("user", JSON.stringify(res?.data?.user));
+        dispatch(login({ token: res?.data?.token, user: res?.data?.user }));
 
         Swal.fire({
           icon: "success",
@@ -30,6 +32,7 @@ const login = () => {
         }).then((result) => (result.isConfirmed ? router.replace("/") : null));
       })
       .catch((err) => {
+        console.log(err);
         Swal.fire({
           icon: "error",
           text: err?.response?.data,
@@ -91,9 +94,9 @@ const login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-                <div className={loginStyle.forgotPassword}>
+                {/* <div className={loginStyle.forgotPassword}>
                   <p className="mt-2">Forgot password ?</p>
-                </div>
+                </div> */}
                 <div className={`d-grid gap-2 ${loginStyle.loginButton}`}>
                   <button
                     type="submit"
@@ -120,4 +123,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default loginRequest;

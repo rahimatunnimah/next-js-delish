@@ -7,7 +7,7 @@ const VideoRecipe = (props) => {
   return (
     <>
       {props?.data?.length === 0 ? (
-        "gak ada video"
+        "No Video Yet  "
       ) : (
         <>
           {props?.data?.map((item, index) => (

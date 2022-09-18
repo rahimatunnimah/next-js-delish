@@ -50,13 +50,6 @@
   height: 50vh;
 }
 
-.name {
-  font-style: normal;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 21px;
-  color: #ffffff;
-}
 
 .bgBottom {
   background-color: #ffffff;
@@ -66,9 +59,16 @@
   border-top-right-radius: 30px;
 }
 
-.imgUser {
-  width: 84px;
-  height: 84px;
+.profile img{
+  border-radius: 50%;
+}
+
+.profile p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #ffffff;
 }
 
 .icon {
@@ -89,4 +89,5 @@
 
 .btnLogout {
   border-radius: 5px;
+  height: 50px;
 }

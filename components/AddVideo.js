@@ -24,7 +24,11 @@ const AddVideo = (props) => {
       description,
     };
     axios
-      .post(`http://localhost:8001/api/recipes/add/video`, body, config)
+      .post(
+        `${process.env.NEXT_PUBLIC_API_URL}/recipes/add/video`,
+        body,
+        config
+      )
       .then((res) => {
         // console.log(res);
         getVideo();
@@ -43,12 +47,15 @@ const AddVideo = (props) => {
   };
   return (
     <>
-      <Button variant="primary" onClick={props?.handleShow}>
-        Launch demo modal
+      <Button
+        variant="warning text-white shadow-none"
+        onClick={props?.handleShow}
+      >
+        Please Add Video Here
       </Button>
       <Modal show={props?.show} onHide={props?.handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Add Video</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>

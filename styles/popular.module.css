@@ -8,13 +8,13 @@
   padding-top: 7px;
 }
 
-.titlePage {
+.titlePage p {
   font-style: normal;
   font-weight: 500;
   font-size: 30px;
   line-height: 23px;
   color: #f1cd31;
-  margin-top: 10px;
+  margin-bottom: 0px;
 }
 
 .contentText p {

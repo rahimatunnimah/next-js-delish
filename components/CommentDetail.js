@@ -16,9 +16,9 @@ const detailComment = (props) => {
       {props?.data?.map((item, index) => {
         return (
           <div key={index} className="row mx-4">
-            <div className="col-3 text-center">
+            <div className="col-3 p-0 text-center">
               <div className={detailStyle.imgComment}>
-                <Image src={imgUser} />
+                <Image src={item.image} width={50} height={50} />
               </div>
             </div>
             <div className="col-9 px-0">

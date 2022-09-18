@@ -24,7 +24,7 @@ const PopularRecipes = (props) => {
               <div className="col-9 px-0">
                 <h6 className="mt-3">{item.name}</h6>
                 <p className={homeStyle.rating}>
-                  <AiFillStar color="#FFB200" /> 4.6{" "}
+                  {/* <AiFillStar color="#FFB200" /> 4.6{" "} */}
                   <span>{item.category_name}</span>
                 </p>
               </div>
