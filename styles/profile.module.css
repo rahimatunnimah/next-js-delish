@@ -44,3 +44,50 @@
   height: 40px;
   border-radius: 15px;
 }
+
+.bgTop {
+  background-color: #eec302;
+  height: 50vh;
+}
+
+
+.bgBottom {
+  background-color: #ffffff;
+  height: 50vh;
+  margin-top: -50px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.profile img{
+  border-radius: 50%;
+}
+
+.profile p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #ffffff;
+}
+
+.icon {
+  color: #eec302;
+}
+
+.titleContent {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.link {
+  cursor: pointer;
+}
+
+.btnLogout {
+  border-radius: 5px;
+  height: 50px;
+}

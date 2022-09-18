@@ -1,15 +1,15 @@
 import React from "react";
 import Image from "next/image";
 import Slider from "react-slick";
-import imageRecipe from "../public/images/beef steak.jpg";
 import homeStyle from "../styles/Home.module.css";
+import Link from "next/link";
 
-const NewRecipes = () => {
+const NewRecipes = (props) => {
   const settings = {
-    dots: false,
+    dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 2.5,
+    slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
@@ -39,34 +39,30 @@ const NewRecipes = () => {
       },
     ],
   };
+
   return (
     <>
       <div>
         <Slider {...settings}>
-          <div className={homeStyle.cardImage}>
-            <Image src={imageRecipe} alt="img-recipe" />
-            <div className="card-img-overlay">
-              <h5 className={`card-title ${homeStyle.titleCardRecipe}`}>
-                Beef Steak
-              </h5>
-            </div>
-          </div>
-          <div className={homeStyle.cardImage}>
-            <Image src={imageRecipe} alt="img-recipe" />
-            <div className="card-img-overlay">
-              <h5 className={`card-title ${homeStyle.titleCardRecipe}`}>
-                Beef Steak
-              </h5>
-            </div>
-          </div>
-          <div className={homeStyle.cardImage}>
-            <Image src={imageRecipe} alt="img-recipe" />
-            <div className="card-img-overlay">
-              <h5 className={`card-title ${homeStyle.titleCardRecipe}`}>
-                Beef Steak
-              </h5>
-            </div>
-          </div>
+          {props?.data?.result?.map((item, index) => {
+            return (
+              <Link key={index} href={`/recipe/detail/${item.id}`}>
+                <div className={homeStyle.cardImage}>
+                  <Image
+                    src={item.recipe_image}
+                    height={500}
+                    width={500}
+                    alt="img-recipe"
+                  />
+                  <div
+                    className={`card-img-overlay ${homeStyle.titleCardRecipe}`}
+                  >
+                    <h5>{item.name}</h5>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </Slider>
       </div>
     </>

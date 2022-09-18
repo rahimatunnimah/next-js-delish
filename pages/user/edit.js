@@ -1,6 +1,7 @@
 import React from "react";
 import profileStyle from "../../styles/profile.module.css";
 import {IoIosArrowBack} from "react-icons/io";
+import Link from "next/link";
 
 const editProfile = () => {
     return (
@@ -12,7 +13,9 @@ const editProfile = () => {
                         <div className="row mt-4">
                             <div className="col-4">
                                 <div className={profileStyle.iconBack}>
-                                    <IoIosArrowBack size={32}/>
+                                    <Link href="/user/profile" passHref>
+                                        <IoIosArrowBack size={32} />
+                                    </Link>
                                 </div>
                             </div>
                             <div className="col-8">

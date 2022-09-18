@@ -16,15 +16,17 @@
   border-radius: 10px;
 }
 
+.formCategory {
+  padding-left: 13px;
+  padding-right: 13px;
+}
+
 .addButton button {
   height: 50px;
   width: 183px;
   text-align: center;
   color: #f5f5f5;
-}
-
-.btnPost {
-  margin-left: 90px !important;
+  margin-left: 120px;
 }
 
 .buttonVideo button {

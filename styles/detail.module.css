@@ -1,0 +1,128 @@
+.bgStart {
+  height: 50vh;
+  position: relative;
+
+}
+
+.bgStart img {
+  border-radius: 10px;
+  object-fit: cover;
+  
+}
+
+.iconBack {
+  color: #f5f5f5;
+  position: absolute;
+  left: 16px;
+  top: 20px;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.title h4 {
+  position: absolute;
+  color: #f5f5f5;
+  bottom: 40px;
+  left: 30px;
+  width: 250px;
+  height: 84px;
+  line-height: 30px;
+
+}
+
+.title p {
+  position: absolute;
+  left: 30px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+  color: #f5f5f5;
+  bottom: 50px;
+}
+
+.bgEnd {
+  background-color: #ffffff;
+  height: 50vh;
+  margin-top: -50px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  position: sticky;
+}
+
+.contentVideo h5 {
+  color: #b6b6b6;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.contentVideo p {
+  color: #666666;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.listVideo {
+  background-color: #faf7ed;
+  border-radius: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.contentComment textarea {
+  background-color: #faf7ed !important;
+  border: none;
+}
+
+.commentText {
+  font-weight: 400;
+  font-size: 12px;
+  color: #666666;
+}
+
+.comment p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: left;
+  color: #666666;
+}
+
+.imgComment img {
+  padding-left: 0% !important;
+}
+
+.iconBookmark {
+  position: absolute;
+  bottom: 80px;
+  width: 40px;
+  height: 40px;
+  border-radius: 15px;
+  background-color: #eec302;
+  text-align: center;
+  color: white;
+  padding-top: 5px;
+}
+
+.iconLike {
+  position: absolute;
+  bottom: 80px;
+  width: 40px;
+  height: 40px;
+  border-radius: 15px;
+  background-color: white;
+  text-align: center;
+  color: #eec302;
+  padding-top: 5px;
+}
+
+.ingredients {
+  color: #666666;
+  background-color: #faf7ed;
+  border-radius: 15px;
+  margin-top: 12px;
+  padding: 15px;
+}
