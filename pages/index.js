@@ -11,15 +11,16 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
 const home = (props) => {
-  const [newRecipe] = useState(props?.newRecipes);
-  const [popularRecipe] = useState(props?.popularRecipes);
+  const [newRecipe, setNewRecipe] = useState(props?.newRecipes);
+  const [popularRecipe, setPopularRecipe] = useState(props?.popularRecipes);
   const [search, setSearch] = useState("");
   const { auth } = useSelector((state) => state);
 
   const router = useRouter();
 
   useEffect(() => {
-    newRecipe, popularRecipe;
+    newRecipe;
+    popularRecipe;
   }, []);
 
   const handleSubmit = (e) => {
