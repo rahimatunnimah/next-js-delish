@@ -244,11 +244,15 @@ NEXT_URL= 'YOUR NEXT URL'
 
 <td><image src="https://res.cloudinary.com/df9tcvnrs/image/upload/v1663852507/next-delish/all-recipe_im2klf.png" alt="All Recipe" width=100%></td>
 
+<td><image src="https://res.cloudinary.com/df9tcvnrs/image/upload/v1663852519/next-delish/detail-with-video-delen_pxwfbj.png" alt="Detail Recipe" width=100%></td>
+
 </tr>
 
 <tr>
 
 <td>All Recipe</td>
+
+<td>Detail Video</td>
 
 </tr>
 
