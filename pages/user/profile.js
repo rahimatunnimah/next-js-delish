@@ -65,23 +65,8 @@ const profile = () => {
               <div
                 className={`row justify-content-center ${profileStyle.bgBottom}`}
               >
-                <Link href="/user/my-recipe" passHref>
-                  <div className="row mt-4 cursor">
-                    <div className="col-2 text-center">
-                      <div className={profileStyle.icon}>
-                        <FiAward size={30} />
-                      </div>
-                    </div>
-                    <div className="col-8 mt-2">
-                      <p className={profileStyle.titleContent}>My Recipe</p>
-                    </div>
-                    <div className={`col-2 ${profileStyle.link}`}>
-                      <FiChevronRight />
-                    </div>
-                  </div>
-                </Link>
-                {/* <Link href="/user/edit" passHref>
-                  <div className="row mt-4 cursor">
+                <Link href="/user/edit" passHref>
+                  <div className={`row mt-4 cursor ${profileStyle.rowEdit}`}>
                     <div className="col-2 text-center">
                       <div className={profileStyle.icon}>
                         <FiUser size={30} />
@@ -95,7 +80,22 @@ const profile = () => {
                     </div>
                   </div>
                 </Link>
-                <Link href="/user/saved-recipe" passHref>
+                <Link href="/user/my-recipe" passHref>
+                  <div className="row cursor">
+                    <div className="col-2 text-center">
+                      <div className={profileStyle.icon}>
+                        <FiAward size={30} />
+                      </div>
+                    </div>
+                    <div className="col-8 mt-2">
+                      <p className={profileStyle.titleContent}>My Recipe</p>
+                    </div>
+                    <div className={`col-2 ${profileStyle.link}`}>
+                      <FiChevronRight />
+                    </div>
+                  </div>
+                </Link>
+                {/* <Link href="/user/saved-recipe" passHref>
                   <div className="row mt-4 cursor">
                     <div className="col-2 text-center">
                       <div className={profileStyle.icon}>
